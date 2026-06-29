@@ -9,100 +9,37 @@ document.addEventListener("DOMContentLoaded", function () {
   let confettiInterval = null;
   let celebrationTriggered = false;
 
-  // ── Candle layout: "24" shape in the middle + simple row candles ──────────
-  // The cake is 250px wide, 200px tall. Candle top anchor = top of icing (~2px).
-  // Positions are {left, top} relative to cake div.
-
-  function getCandlePositions() {
-    const positions = [];
-
-    // ── Simple background candles (row along the back of cake) ───────────────
-    const simpleRow = [
-      { left: 18, top: -18 },
-      { left: 34, top: -22 },
-      { left: 50, top: -24 },
-      { left: 195, top: -24 },
-      { left: 211, top: -22 },
-      { left: 227, top: -18 },
-    ];
-    simpleRow.forEach(p => positions.push({ ...p, type: 'simple' }));
-
-    // ── "2" shape — left side ────────────────────────────────────────────────
-    //  Top bar of 2
-    const two = [
-      { left: 68,  top: -55 },
-      { left: 78,  top: -60 },
-      { left: 88,  top: -63 },
-      { left: 98,  top: -64 },
-      { left: 108, top: -63 },
-      // top-right curve
-      { left: 116, top: -58 },
-      { left: 121, top: -50 },
-      // diagonal down-left
-      { left: 115, top: -42 },
-      { left: 107, top: -35 },
-      { left: 98,  top: -28 },
-      { left: 89,  top: -22 },
-      { left: 80,  top: -16 },
-      // bottom bar of 2
-      { left: 88,  top: -10 },
-      { left: 98,  top: -8  },
-      { left: 108, top: -8  },
-      { left: 118, top: -8  },
-      { left: 128, top: -8  },
-    ];
-    two.forEach(p => positions.push({ ...p, type: 'numeral' }));
-
-    // ── "4" shape — right side ───────────────────────────────────────────────
-    const four = [
-      // left vertical of 4
-      { left: 148, top: -62 },
-      { left: 148, top: -50 },
-      { left: 148, top: -38 },
-      { left: 148, top: -26 },
-      // horizontal bar of 4
-      { left: 157, top: -26 },
-      { left: 166, top: -26 },
-      { left: 175, top: -26 },
-      { left: 184, top: -26 },
-      // right vertical of 4
-      { left: 175, top: -62 },
-      { left: 175, top: -50 },
-      { left: 175, top: -38 },
-      { left: 175, top: -14 },
-    ];
-    four.forEach(p => positions.push({ ...p, type: 'numeral' }));
-
-    return positions;
-  }
-
-  function createCandle(pos) {
-    const candle = document.createElement("div");
-    candle.className = pos.type === 'numeral' ? "candle candle-numeral" : "candle candle-simple";
-    candle.style.left = pos.left + "px";
-    candle.style.top = pos.top + "px";
-
-    const flame = document.createElement("div");
-    flame.className = "flame";
-    candle.appendChild(flame);
-
-    cake.appendChild(candle);
-    candles.push(candle);
-  }
-
-  function initCandles() {
-    // Remove existing candles
-    candles.forEach(c => c.remove());
-    candles = [];
-
-    const positions = getCandlePositions();
-    positions.forEach(pos => createCandle(pos));
-    updateCandleCount();
-  }
-
   function updateCandleCount() {
     const activeCandles = candles.filter(c => !c.classList.contains("out")).length;
     candleCountDisplay.textContent = activeCandles;
+  }
+
+  function addCandle(left, top) {
+    const candle = document.createElement("div");
+    candle.className = "candle";
+    candle.style.left = left + "px";
+    candle.style.top = top + "px";
+    const flame = document.createElement("div");
+    flame.className = "flame";
+    candle.appendChild(flame);
+    cake.appendChild(candle);
+    candles.push(candle);
+    updateCandleCount();
+  }
+
+  // Click on cake to add candles
+  cake.addEventListener("click", function (event) {
+    if (celebrationTriggered) return;
+    const rect = cake.getBoundingClientRect();
+    const left = event.clientX - rect.left;
+    const top = event.clientY - rect.top;
+    addCandle(left, top);
+  });
+
+  function initCandles() {
+    candles.forEach(c => c.remove());
+    candles = [];
+    updateCandleCount();
   }
 
   function isBlowing() {
@@ -130,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (blownOut > 0) updateCandleCount();
     }
 
-    if (!celebrationTriggered && candles.every(c => c.classList.contains("out"))) {
+    if (!celebrationTriggered && candles.length > 0 && candles.every(c => c.classList.contains("out"))) {
       celebrationTriggered = true;
       setTimeout(() => {
         showBirthdayMessage();
@@ -157,21 +94,15 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => msg.style.display = "none", 500);
   }
 
-  // Close message on click
   document.getElementById("birthdayMessage").addEventListener("click", hideBirthdayMessage);
 
-  // Relight function (global so button can call it)
   window.relightCandles = function () {
-    // Stop endless confetti
     if (confettiInterval) { clearInterval(confettiInterval); confettiInterval = null; }
     celebrationTriggered = false;
     hideBirthdayMessage();
     document.getElementById("relightBtn").style.display = "none";
     initCandles();
   };
-
-  // Init candles on load
-  initCandles();
 
   // Microphone
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
