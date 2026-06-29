@@ -1,17 +1,18 @@
 body {
   background-color: #ffe5ec;
+  overflow-x: hidden;
 }
 
+/* ── Header ───────────────────────────────────────────────────────────────── */
 .candle-count-display {
   text-align: center;
   margin-top: 150px;
   margin-bottom: 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Fredoka One', cursive;
   font-size: 30px;
-  font-weight: bold;
   color: #f0e4d0;
   background-color: #ff8fab;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: fit-content;
@@ -20,18 +21,14 @@ body {
   border: 2px solid #ffc2d1;
 }
 
-.candle-count-display span {
-  font-weight: bold;
-  color: #AD030F;
-}
-
+/* ── Cake ─────────────────────────────────────────────────────────────────── */
 .cake {
   position: absolute;
   width: 250px;
   height: 200px;
   top: 50%;
   left: 50%;
-  margin-top: -70px;
+  margin-top: -10px;
   margin-left: -125px;
 }
 
@@ -46,7 +43,7 @@ body {
   box-shadow: 0 2px 0 #b3b3b3, 0 4px 0 #b3b3b3, 0 5px 40px rgba(0, 0, 0, 0.5);
 }
 
-.cake>* {
+.cake > * {
   position: absolute;
 }
 
@@ -57,20 +54,17 @@ body {
   height: 100px;
   border-radius: 50%;
   background-color: #ffc2d1;
-  box-shadow: 0 2px 0px #fb6f92, 0 4px 0px #ff8fab, 0 6px 0px #ff8fab, 0 8px 0px #ff8fab, 0 10px 0px #ff8fab, 0 12px 0px #ff8fab, 0 14px 0px #ff8fab, 0 16px 0px #ff8fab, 0 18px 0px #ff8fab, 0 20px 0px #ff8fab, 0 22px 0px #ff8fab, 0 24px 0px #ff8fab, 0 26px 0px #ff8fab, 0 28px 0px #ff8fab, 0 30px 0px #ff8fab;
+  box-shadow:
+    0 2px 0px #fb6f92, 0 4px 0px #ff8fab, 0 6px 0px #ff8fab,
+    0 8px 0px #ff8fab, 0 10px 0px #ff8fab, 0 12px 0px #ff8fab,
+    0 14px 0px #ff8fab, 0 16px 0px #ff8fab, 0 18px 0px #ff8fab,
+    0 20px 0px #ff8fab, 0 22px 0px #ff8fab, 0 24px 0px #ff8fab,
+    0 26px 0px #ff8fab, 0 28px 0px #ff8fab, 0 30px 0px #ff8fab;
 }
 
-.layer-top {
-  top: 0px;
-}
-
-.layer-middle {
-  top: 33px;
-}
-
-.layer-bottom {
-  top: 66px;
-}
+.layer-top    { top:  0px; }
+.layer-middle { top: 33px; }
+.layer-bottom { top: 66px; }
 
 .icing {
   top: 2px;
@@ -84,10 +78,7 @@ body {
 .icing:before {
   content: "";
   position: absolute;
-  top: 4px;
-  right: 5px;
-  bottom: 6px;
-  left: 5px;
+  top: 4px; right: 5px; bottom: 6px; left: 5px;
   background-color: #f4ebdc;
   box-shadow: 0 0 4px #f6efe3, 0 0 4px #f6efe3, 0 0 4px #f6efe3;
   border-radius: 50%;
@@ -103,46 +94,45 @@ body {
   background-color: #f0e4d0;
 }
 
-.drip1 {
-  top: 53px;
-  left: 5px;
-  transform: skewY(15deg);
-  height: 48px;
-  width: 40px;
-}
+.drip1 { top: 53px; left:  5px; transform: skewY(15deg);  height: 48px; width: 40px; }
+.drip2 { top: 69px; left: 181px; transform: skewY(-15deg); }
+.drip3 { top: 54px; left:  90px; width: 80px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; }
 
-.drip2 {
-  top: 69px;
-  left: 181px;
-  transform: skewY(-15deg);
-}
-
-.drip3 {
-  top: 54px;
-  left: 90px;
-  width: 80px;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-}
-
+/* ── Candles ──────────────────────────────────────────────────────────────── */
 .candle {
-  background-color: #7B020B;
-  width: 12px;
-  height: 35px;
-  border-radius: 6px/3px;
-  top: -20px;
-  left: 50%;
-  margin-left: -8px;
   z-index: 10;
+  border-radius: 4px 4px 2px 2px;
 }
 
-.candle:before {
+/* Simple candles: slim, pastel */
+.candle-simple {
+  background-color: #ff8fab;
+  width: 8px;
+  height: 28px;
+  top: -18px;
+}
+
+.candle-simple:before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 12px;
-  height: 6px;
+  top: 0; left: 0;
+  width: 8px; height: 5px;
+  border-radius: 50%;
+  background-color: #ffc2d1;
+}
+
+/* Numeral candles: slightly larger, deep red */
+.candle-numeral {
+  background-color: #7B020B;
+  width: 10px;
+  height: 32px;
+}
+
+.candle-numeral:before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 10px; height: 6px;
   border-radius: 50%;
   background-color: #ad030f;
 }
@@ -151,52 +141,147 @@ body {
   display: none;
 }
 
+/* ── Flame ────────────────────────────────────────────────────────────────── */
 .flame {
   position: absolute;
   background-color: orange;
-  width: 10px;
-  height: 25px;
-  border-radius: 8px 8px 8px 8px/20px 20px 8px 8px;
-  top: -34px;
+  width: 8px;
+  height: 20px;
+  border-radius: 8px 8px 8px 8px / 18px 18px 8px 8px;
+  top: -26px;
   left: 50%;
-  margin-left: -7.5px;
+  margin-left: -4px;
   z-index: 10;
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 0 0 20px rgba(255, 165, 0, 0.5), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 80px rgba(255, 165, 0, 0.5);
+  box-shadow:
+    0 0 6px  rgba(255, 165, 0, 0.5),
+    0 0 12px rgba(255, 165, 0, 0.5),
+    0 0 30px rgba(255, 165, 0, 0.4);
   transform-origin: 50% 90%;
   animation: flicker 1s ease-in-out alternate infinite;
 }
 
 @keyframes flicker {
-  0% {
-    transform: skewX(5deg);
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.2), 0 0 20px rgba(255, 165, 0, 0.2), 0 0 60px rgba(255, 165, 0, 0.2), 0 0 80px rgba(255, 165, 0, 0.2);
-  }
-
-  25% {
-    transform: skewX(-5deg);
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 0 0 20px rgba(255, 165, 0, 0.5), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 80px rgba(255, 165, 0, 0.5);
-  }
-
-  50% {
-    transform: skewX(10deg);
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.3), 0 0 20px rgba(255, 165, 0, 0.3), 0 0 60px rgba(255, 165, 0, 0.3), 0 0 80px rgba(255, 165, 0, 0.3);
-  }
-
-  75% {
-    transform: skewX(-10deg);
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.4), 0 0 20px rgba(255, 165, 0, 0.4), 0 0 60px rgba(255, 165, 0, 0.4), 0 0 80px rgba(255, 165, 0, 0.4);
-  }
-
-  100% {
-    transform: skewX(5deg);
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.5), 0 0 20px rgba(255, 165, 0, 0.5), 0 0 60px rgba(255, 165, 0, 0.5), 0 0 80px rgba(255, 165, 0, 0.5);
-  }
+  0%   { transform: skewX(5deg);   box-shadow: 0 0 6px rgba(255,165,0,0.2), 0 0 14px rgba(255,165,0,0.2); }
+  25%  { transform: skewX(-5deg);  box-shadow: 0 0 6px rgba(255,165,0,0.5), 0 0 14px rgba(255,165,0,0.5); }
+  50%  { transform: skewX(8deg);   box-shadow: 0 0 6px rgba(255,165,0,0.3), 0 0 14px rgba(255,165,0,0.3); }
+  75%  { transform: skewX(-8deg);  box-shadow: 0 0 6px rgba(255,165,0,0.4), 0 0 14px rgba(255,165,0,0.4); }
+  100% { transform: skewX(5deg);   box-shadow: 0 0 6px rgba(255,165,0,0.5), 0 0 14px rgba(255,165,0,0.5); }
 }
 
+/* ── Relight Button ───────────────────────────────────────────────────────── */
+.relight-btn {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ff8fab, #fb6f92);
+  color: white;
+  font-family: 'Fredoka One', cursive;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(251, 111, 146, 0.5);
+  z-index: 2000;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.relight-btn:hover {
+  transform: translateX(-50%) scale(1.07);
+  box-shadow: 0 6px 20px rgba(251, 111, 146, 0.7);
+}
+
+@keyframes popIn {
+  from { transform: translateX(-50%) scale(0); opacity: 0; }
+  to   { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* ── Birthday Message Overlay ─────────────────────────────────────────────── */
+.birthday-message {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 229, 236, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.birthday-message.visible {
+  opacity: 1;
+}
+
+.message-box {
+  background: white;
+  border-radius: 24px;
+  padding: 40px 50px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(251, 111, 146, 0.35);
+  border: 3px solid #ffc2d1;
+  animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-width: 380px;
+  width: 90%;
+}
+
+.message-box h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 36px;
+  color: #ff8fab;
+  margin: 12px 0 8px;
+}
+
+.message-box p {
+  font-family: 'Arial', sans-serif;
+  font-size: 17px;
+  color: #c04d70;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.message-emoji {
+  font-size: 30px;
+  letter-spacing: 4px;
+}
+
+@keyframes bounceIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ── 24 Number ────────────────────────────────────────────────────────────── */
+.number-22 {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 150px;
+  line-height: 1;
+  background: linear-gradient(135deg, #ffd700 0%, #fdb931 25%, #ff6999 50%, #fdb931 75%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(2px 2px 0px #c04d70)
+    drop-shadow(4px 4px 0px #c04d70)
+    drop-shadow(6px 6px 0px rgba(0,0,0,0.2));
+  z-index: 1000;
+  transform: rotate(-15deg);
+  animation: floatNumber 3s ease-in-out infinite;
+}
+
+@keyframes floatNumber {
+  0%, 100% { transform: rotate(-15deg) translateY(0);     }
+  50%       { transform: rotate(-15deg) translateY(-15px); }
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
 .footer {
   position: fixed;
-  left: 0;
-  bottom: 0;
+  left: 0; bottom: 0;
   width: 100%;
   background-color: #f8f9fa;
   color: #fb6f92;
@@ -206,48 +291,27 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .heart {
   animation: blink 1s linear infinite;
-  width: 16px;
-  height: 16px;
+  width: 16px; height: 16px;
   margin-left: 5px;
 }
 
 @keyframes blink {
-  0% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
+  0%   { opacity: 0; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-.corner-image {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 240px;
-  /* Adjust size as needed */
-  height: auto;
-  transform: rotate(45deg);
-  border: 5px solid white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-}
-
+/* ── Balloons ─────────────────────────────────────────────────────────────── */
 .balloon {
   position: fixed;
   bottom: -100px;
   width: 60px;
   height: 80px;
-  background-color: #ff6999;
   border-radius: 50%;
   z-index: 500;
   animation: floatUp 5s linear forwards;
@@ -259,90 +323,14 @@ body {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 2px;
-  height: 40px;
+  width: 2px; height: 40px;
   background-color: rgba(255, 255, 255, 0.7);
 }
 
 @keyframes floatUp {
-  0% {
-    bottom: -100px;
-    transform: translateX(0);
-  }
-
-  25% {
-    transform: translateX(20px);
-  }
-
-  50% {
-    transform: translateX(-20px);
-  }
-
-  75% {
-    transform: translateX(10px);
-  }
-
-  100% {
-    bottom: 110vh;
-    transform: translateX(0);
-  }
-}
-
-.number-22 {
-  position: fixed;
-  top: 30px;
-  left: 30px;
-  font-family: 'Fredoka One', cursive;
-  font-size: 150px;
-  line-height: 1;
-  color: #ff6999;
-  /* Fallback */
-  background: linear-gradient(135deg, #ffd700 0%, #fdb931 25%, #ff6999 50%, #fdb931 75%, #ffd700 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0));
-  /* Reset default shadow */
-  text-shadow: none;
-  /* Reset default text shadow */
-
-  /* Simulate 3D and Outline using drop-shadow filter since text-shadow doesn't work well with background-clip */
-  filter:
-    drop-shadow(2px 2px 0px #c04d70) drop-shadow(4px 4px 0px #c04d70) drop-shadow(6px 6px 0px rgba(0, 0, 0, 0.2));
-
-  z-index: 1000;
-  transform: rotate(-15deg);
-  animation: floatNumber 3s ease-in-out infinite;
-}
-
-@keyframes floatNumber {
-
-  0%,
-  100% {
-    transform: rotate(-15deg) translateY(0);
-  }
-
-  50% {
-    transform: rotate(-15deg) translateY(-15px);
-  }
-}
-
-position: fixed;
-top: 20px;
-left: 20px;
-font-family: 'Arial',
-sans-serif;
-font-size: 200px;
-font-weight: bold;
-color: #ff6999;
-text-shadow: 1px 1px 0 #c04d70,
-2px 2px 0 #c04d70,
-3px 3px 0 #c04d70,
-4px 4px 0 #c04d70,
-5px 5px 0 #c04d70,
-6px 6px 0 #c04d70,
-7px 7px 0 #c04d70,
-8px 8px 7px rgba(0, 0, 0, 0.4),
-8px 8px 1px rgba(0, 0, 0, 0.5);
-z-index: 1000;
-transform: rotate(-15deg);
+  0%   { bottom: -100px; transform: translateX(0);    }
+  25%  {                 transform: translateX(20px);  }
+  50%  {                 transform: translateX(-20px); }
+  75%  {                 transform: translateX(10px);  }
+  100% { bottom: 110vh;  transform: translateX(0);    }
 }
