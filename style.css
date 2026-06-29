@@ -28,8 +28,9 @@ body {
   height: 200px;
   top: 50%;
   left: 50%;
-  margin-top: -10px;
+  margin-top: -70px;
   margin-left: -125px;
+  cursor: pointer;
 }
 
 .plate {
@@ -98,41 +99,23 @@ body {
 .drip2 { top: 69px; left: 181px; transform: skewY(-15deg); }
 .drip3 { top: 54px; left:  90px; width: 80px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; }
 
-/* ── Candles ──────────────────────────────────────────────────────────────── */
+/* ── Candle ───────────────────────────────────────────────────────────────── */
 .candle {
-  z-index: 10;
-  border-radius: 4px 4px 2px 2px;
-}
-
-/* Simple candles: slim, pastel */
-.candle-simple {
-  background-color: #ff8fab;
-  width: 8px;
-  height: 28px;
-  top: -18px;
-}
-
-.candle-simple:before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 8px; height: 5px;
-  border-radius: 50%;
-  background-color: #ffc2d1;
-}
-
-/* Numeral candles: slightly larger, deep red */
-.candle-numeral {
   background-color: #7B020B;
-  width: 10px;
-  height: 32px;
+  width: 12px;
+  height: 35px;
+  border-radius: 6px/3px;
+  top: -20px;
+  left: 50%;
+  margin-left: -8px;
+  z-index: 10;
 }
 
-.candle-numeral:before {
+.candle:before {
   content: "";
   position: absolute;
   top: 0; left: 0;
-  width: 10px; height: 6px;
+  width: 12px; height: 6px;
   border-radius: 50%;
   background-color: #ad030f;
 }
@@ -145,27 +128,28 @@ body {
 .flame {
   position: absolute;
   background-color: orange;
-  width: 8px;
-  height: 20px;
-  border-radius: 8px 8px 8px 8px / 18px 18px 8px 8px;
-  top: -26px;
+  width: 10px;
+  height: 25px;
+  border-radius: 8px 8px 8px 8px/20px 20px 8px 8px;
+  top: -34px;
   left: 50%;
-  margin-left: -4px;
+  margin-left: -7.5px;
   z-index: 10;
   box-shadow:
-    0 0 6px  rgba(255, 165, 0, 0.5),
-    0 0 12px rgba(255, 165, 0, 0.5),
-    0 0 30px rgba(255, 165, 0, 0.4);
+    0 0 10px rgba(255, 165, 0, 0.5),
+    0 0 20px rgba(255, 165, 0, 0.5),
+    0 0 60px rgba(255, 165, 0, 0.5),
+    0 0 80px rgba(255, 165, 0, 0.5);
   transform-origin: 50% 90%;
   animation: flicker 1s ease-in-out alternate infinite;
 }
 
 @keyframes flicker {
-  0%   { transform: skewX(5deg);   box-shadow: 0 0 6px rgba(255,165,0,0.2), 0 0 14px rgba(255,165,0,0.2); }
-  25%  { transform: skewX(-5deg);  box-shadow: 0 0 6px rgba(255,165,0,0.5), 0 0 14px rgba(255,165,0,0.5); }
-  50%  { transform: skewX(8deg);   box-shadow: 0 0 6px rgba(255,165,0,0.3), 0 0 14px rgba(255,165,0,0.3); }
-  75%  { transform: skewX(-8deg);  box-shadow: 0 0 6px rgba(255,165,0,0.4), 0 0 14px rgba(255,165,0,0.4); }
-  100% { transform: skewX(5deg);   box-shadow: 0 0 6px rgba(255,165,0,0.5), 0 0 14px rgba(255,165,0,0.5); }
+  0%   { transform: skewX(5deg);   box-shadow: 0 0 10px rgba(255,165,0,0.2), 0 0 20px rgba(255,165,0,0.2), 0 0 60px rgba(255,165,0,0.2), 0 0 80px rgba(255,165,0,0.2); }
+  25%  { transform: skewX(-5deg);  box-shadow: 0 0 10px rgba(255,165,0,0.5), 0 0 20px rgba(255,165,0,0.5), 0 0 60px rgba(255,165,0,0.5), 0 0 80px rgba(255,165,0,0.5); }
+  50%  { transform: skewX(10deg);  box-shadow: 0 0 10px rgba(255,165,0,0.3), 0 0 20px rgba(255,165,0,0.3), 0 0 60px rgba(255,165,0,0.3), 0 0 80px rgba(255,165,0,0.3); }
+  75%  { transform: skewX(-10deg); box-shadow: 0 0 10px rgba(255,165,0,0.4), 0 0 20px rgba(255,165,0,0.4), 0 0 60px rgba(255,165,0,0.4), 0 0 80px rgba(255,165,0,0.4); }
+  100% { transform: skewX(5deg);   box-shadow: 0 0 10px rgba(255,165,0,0.5), 0 0 20px rgba(255,165,0,0.5), 0 0 60px rgba(255,165,0,0.5), 0 0 80px rgba(255,165,0,0.5); }
 }
 
 /* ── Relight Button ───────────────────────────────────────────────────────── */
